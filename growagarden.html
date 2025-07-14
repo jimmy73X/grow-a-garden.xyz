@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow a Garden - Fun Gardening Game on Roblox</title>
+    <meta name="description" content="Play Grow a Garden on Roblox! Create your dream garden, plant unique flowers, and design beautiful landscapes. Join thousands of players today!">
+    <link rel="canonical" href="https://grow-a-garden.xyz">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        appleLight: "#f5f5f7",
+                        appleDark: "#1d1d1f",
+                        appleBlue: "#0071e3",
+                        appleGreen: "#4cd964",
+                        appleGray: "#86868b"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1d1d1f;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .logo {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+        
+        .logo::after {
+            content: "🌱";
+            position: absolute;
+            top: -8px;
+            right: -25px;
+            font-size: 1.8rem;
+        }
+        
+        .hero-pattern {
+            background: radial-gradient(circle, rgba(76,217,100,0.1) 0%, rgba(255,255,255,0) 70%);
+        }
+        
+        .game-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(76, 217, 100, 0.15);
+        }
+        
+        .btn-primary {
+            background-color: #0071e3;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        
+        .forum-card {
+            background-color: #fbfbfd;
+            border: 1px solid #e0e0e0;
+            border-radius: 18px;
+        }
+        
+        .message-item {
+            border-bottom: 1px solid #f0f0f0;
+            padding-bottom: 1rem;
+        }
+        
+        .reply-item {
+            background-color: #f9f9f9;
+            border-left: 3px solid #e0e0e0;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(76, 217, 100, 0.1);
+            border-radius: 16px;
+        }
+        
+        .garden-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234cd964' fill-opacity='0.07' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .censor {
+            background-color: #f0f0f0;
+            color: transparent;
+            border-radius: 4px;
+            user-select: none;
+        }
+        
+        .rotate-3 {
+            transform: rotate(3deg);
+        }
+        
+        .rotate--2 {
+            transform: rotate(-2deg);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Gallery styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 220px;
+            background-color: #f0f0f0;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 15px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        /* Feature section with gallery */
+        .feature-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        @media (min-width: 1024px) {
+            .feature-gallery {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .feature-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-appleLight">
+    <!-- Header Section -->
+    <header class="bg-white sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <h1 class="logo text-2xl md:text-3xl font-bold text-appleDark">
+                    grow a garden
+                </h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="text-appleGray hover:text-appleDark transition">About</a>
+                <a href="#features" class="text-appleGray hover:text-appleDark transition">Features</a>
+                <a href="#gallery" class="text-appleGray hover:text-appleDark transition">Gallery</a>
+                <a href="#forum" class="text-appleGray hover:text-appleDark transition">Community</a>
+            </nav>
+            <a href="https://www.roblox.com/games/126884695634066/Grow-a-Garden" 
+               class="btn-primary text-white px-5 py-2.5 rounded-full font-medium text-sm md:text-base">
+                Play Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern pt-16 pb-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-appleDark">
+                    Grow Your Dream <span class="text-appleGreen">Garden</span> in Roblox
+                </h1>
+                <p class="text-lg text-appleGray mb-8 max-w-lg">
+                    Create, design, and cultivate your own magical garden paradise. 
+                    Plant unique flowers, design beautiful landscapes, and share your creations 
+                    with a community of gardening enthusiasts!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://www.roblox.com/games/126884695634066/Grow-a-Garden" 
+                       class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-center text-lg transition duration-300">
+                        <i class="fas fa-play-circle mr-2"></i> Play Now on Roblox
+                    </a>
+                    <a href="#about" 
+                       class="bg-white border-2 border-appleGreen text-appleGreen px-8 py-4 rounded-full font-semibold text-center text-lg transition duration-300 hover:bg-appleGreen hover:text-white">
+                        <i class="fas fa-leaf mr-2"></i> Learn More
+                    </a>
+                </div>
+                <div class="mt-10 flex items-center">
+                    <div class="flex -space-x-3">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Player" class="w-12 h-12 rounded-full border-2 border-white">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Player" class="w-12 h-12 rounded-full border-2 border-white">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Player" class="w-12 h-12 rounded-full border-2 border-white">
+                        <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="Player" class="w-12 h-12 rounded-full border-2 border-white">
+                    </div>
+                    <div class="ml-4">
+                        <p class="font-semibold">Join <span class="text-appleGreen">15,000+</span> Gardeners</p>
+                        <p class="text-sm text-appleGray">Playing daily on Roblox</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 bg-appleGreen rounded-2xl rotate-3 overflow-hidden shadow-xl">
+                        <div class="garden-pattern w-full h-full flex items-center justify-center">
+                            <div class="text-white text-center">
+                                <i class="fas fa-seedling text-6xl mb-4"></i>
+                                <p class="text-xl font-bold">Grow a Garden</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-64 h-64 md:w-72 md:h-72 bg-white rounded-2xl rotate--2 shadow-xl border border-gray-100 overflow-hidden">
+                        <div class="bg-gray-100 w-full h-1/3"></div>
+                        <div class="p-4">
+                            <div class="flex mb-3">
+                                <div class="w-16 h-4 bg-gray-200 rounded mr-2"></div>
+                                <div class="w-10 h-4 bg-gray-200 rounded"></div>
+                            </div>
+                            <div class="w-full h-3 bg-gray-200 rounded mb-2"></div>
+                            <div class="w-4/5 h-3 bg-gray-200 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-appleDark">
+                About <span class="text-appleGreen">Grow a Garden</span>
+            </h2>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">Create Your Perfect Garden Oasis</h3>
+                    <p class="text-lg text-appleGray mb-6">
+                        Welcome to <span class="font-semibold text-appleGreen">Grow a Garden</span>, the most relaxing and creative gardening experience on Roblox! 
+                        Design your dream garden from scratch, choose from hundreds of plant varieties, 
+                        and watch your creation come to life.
+                    </p>
+                    <p class="text-lg text-appleGray mb-6">
+                        Whether you're a seasoned gardener or just starting out, our game offers an 
+                        immersive experience where you can cultivate beautiful flowers, arrange stunning 
+                        landscapes, and even trade rare plants with other players.
+                    </p>
+                    <p class="text-lg text-appleGray">
+                        With regular updates and seasonal events, there's always something new growing 
+                        in our vibrant community garden!
+                    </p>
+                    <div class="mt-8">
+                        <a href="https://www.roblox.com/games/126884695634066/Grow-a-Garden" 
+                           class="btn-primary text-white px-6 py-3 rounded-full font-semibold inline-flex items-center">
+                            <i class="fas fa-gamepad mr-2"></i> Start Gardening Now
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+                    <div class="game-card bg-appleLight p-6 rounded-2xl">
+                        <div class="feature-icon flex items-center justify-center mb-4 text-appleGreen">
+                            <i class="fas fa-seedling text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Plant Collection</h3>
+                        <p class="text-appleGray">Discover and collect over 200 unique plants and flowers</p>
+                    </div>
+                    <div class="game-card bg-appleLight p-6 rounded-2xl">
+                        <div class="feature-icon flex items-center justify-center mb-4 text-appleGreen">
+                            <i class="fas fa-paint-brush text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Custom Designs</h3>
+                        <p class="text-appleGray">Design every aspect of your garden with creative tools</p>
+                    </div>
+                    <div class="game-card bg-appleLight p-6 rounded-2xl">
+                        <div class="feature-icon flex items-center justify-center mb-4 text-appleGreen">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Social Gardening</h3>
+                        <p class="text-appleGray">Visit friends' gardens and collaborate on projects</p>
+                    </div>
+                    <div class="game-card bg-appleLight p-6 rounded-2xl">
+                        <div class="feature-icon flex items-center justify-center mb-4 text-appleGreen">
+                            <i class="fas fa-calendar-alt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Seasonal Events</h3>
+                        <p class="text-appleGray">Special events and limited-time plants every season</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Forum Section -->
+    <section id="forum" class="py-16 bg-appleLight">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-appleDark">
+                Gardeners' <span class="text-appleGreen">Community</span>
+            </h2>
+            <p class="text-center text-lg text-appleGray max-w-2xl mx-auto mb-16">
+                Join the conversation with fellow gardening enthusiasts
+            </p>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="forum-card p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4">Share Your Thoughts</h3>
+                    <form id="forumForm" class="space-y-4">
+                        <div>
+                            <textarea id="message" rows="4" class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-appleGreen focus:border-transparent" placeholder="Share your gardening tips, ask questions, or show off your creations!"></textarea>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="text-sm text-appleGray">
+                                <i class="fas fa-info-circle mr-1"></i> No registration required
+                            </div>
+                            <button type="submit" class="btn-primary text-white px-6 py-2.5 rounded-full font-medium">
+                                Post Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <h3 class="text-xl font-bold mb-4">Recent Discussions</h3>
+                <div id="messagesContainer" class="space-y-6">
+                    <!-- Messages will be loaded here -->
+                </div>
+                
+                <div id="loadMoreContainer" class="mt-8 text-center hidden">
+                    <button id="loadMoreBtn" class="text-appleBlue font-medium hover:underline">
+                        <i class="fas fa-chevron-down mr-2"></i> Load More Messages
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-appleDark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <h2 class="logo text-2xl font-bold mb-4">
+                        grow a garden
+                    </h2>
+                    <p class="text-appleGray max-w-xs">
+                        Create, cultivate, and share your dream garden with players worldwide on Roblox.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-appleGray hover:text-white transition">About the Game</a></li>
+                        <li><a href="#features" class="text-appleGray hover:text-white transition">Features</a></li>
+                        <li><a href="#gallery" class="text-appleGray hover:text-white transition">Gallery</a></li>
+                        <li><a href="#forum" class="text-appleGray hover:text-white transition">Community Forum</a></li>
+                        <li><a href="https://www.roblox.com/games/126884695634066/Grow-a-Garden" class="text-appleGray hover:text-white transition">Play on Roblox</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 text-center text-appleGray text-sm">
+                <p>&copy; 2023 Grow a Garden.xyz - All rights reserved. This site is not affiliated with Roblox Corporation.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Forum functionality with profanity filter
+        document.addEventListener('DOMContentLoaded', function() {
+            const forumForm = document.getElementById('forumForm');
+            const messagesContainer = document.getElementById('messagesContainer');
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            
+            // Sample bad words list (in a real application, this would be more comprehensive)
+            const badWords = ['idiot', 'stupid', 'hate', 'dumb', 'moron', 'fool', 'loser'];
+            
+            // Function to censor bad words
+            function censorText(text) {
+                let censoredText = text;
+                badWords.forEach(word => {
+                    const regex = new RegExp(`\\b${word}\\b`, 'gi');
+                    censoredText = censoredText.replace(regex, match => 
+                        `<span class="censor" title="Censored word">${'*'.repeat(match.length)}</span>`
+                    );
+                });
+                return censoredText;
+            }
+            
+            // Sample messages data
+            let messages = [
+                {
+                    id: 1,
+                    text: "Just started playing yesterday and I'm already addicted! The flower designs are amazing.",
+                    timestamp: "2 hours ago",
+                    replies: [
+                        { id: 1, text: "Welcome to the community! What's your favorite plant so far?", timestamp: "1 hour ago" }
+                    ]
+                },
+                {
+                    id: 2,
+                    text: "Does anyone have tips for growing the rare moonflower? I've been trying for days without success.",
+                    timestamp: "5 hours ago",
+                    replies: [
+                        { id: 1, text: "It only blooms at night in the game! Try visiting your garden after 8PM.", timestamp: "4 hours ago" },
+                        { id: 2, text: "Also make sure you're using the special lunar fertilizer from the shop.", timestamp: "3 hours ago" }
+                    ]
+                },
+                {
+                    id: 3,
+                    text: "Just reached level 30! So excited to unlock the new Japanese garden theme 🎉",
+                    timestamp: "1 day ago",
+                    replies: []
+                },
+                {
+                    id: 4,
+                    text: "Can we please get more customization options for pathways? The current ones are a bit limited.",
+                    timestamp: "1 day ago",
+                    replies: [
+                        { id: 1, text: "I agree! I'd love to see more patterns and colors.", timestamp: "22 hours ago" }
+                    ]
+                },
+                {
+                    id: 5,
+                    text: "Sharing my new rose garden design! Took me a week to get everything perfect 🌹",
+                    timestamp: "2 days ago",
+                    replies: [
+                        { id: 1, text: "Wow, that looks incredible! How did you get the colors to blend so well?", timestamp: "2 days ago" },
+                        { id: 2, text: "The symmetry is perfect! Great job!", timestamp: "1 day ago" }
+                    ]
+                }
+            ];
+            
+            // Variables for message management
+            let visibleMessages = 3;
+            const maxMessages = 50;
+            const initialDisplay = 5;
+            
+            // Function to render messages
+            function renderMessages() {
+                messagesContainer.innerHTML = '';
+                const messagesToShow = messages.slice(0, visibleMessages);
+                
+                messagesToShow.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = 'message-item fade-in';
+                    messageElement.innerHTML = `
+                        <div class="flex items-start">
+                            <div class="bg-appleGreen w-10 h-10 rounded-full flex items-center justify-center text-white font-bold mr-4">G</div>
+                            <div>
+                                <div class="flex justify-between">
+                                    <h4 class="font-bold">Gardener</h4>
+                                    <span class="text-sm text-appleGray">${message.timestamp}</span>
+                                </div>
+                                <p class="mt-2 mb-3">${censorText(message.text)}</p>
+                                <button class="text-appleBlue text-sm font-medium reply-btn" data-id="${message.id}">
+                                    <i class="fas fa-reply mr-1"></i> Reply
+                                </button>
+                            </div>
+                        </div>
+                        ${message.replies.length > 0 ? `
+                            <div class="mt-4 ml-14 space-y-4">
+                                ${message.replies.map(reply => `
+                                    <div class="reply-item pl-4 py-3 fade-in">
+                                        <div class="flex justify-between">
+                                            <h4 class="font-bold">Gardener</h4>
+                                            <span class="text-sm text-appleGray">${reply.timestamp}</span>
+                                        </div>
+                                        <p class="mt-1">${censorText(reply.text)}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                        <form class="reply-form mt-3 ml-14 hidden" data-id="${message.id}">
+                            <textarea class="w-full p-3 border border-gray-300 rounded-lg mb-2" rows="2" placeholder="Write your reply..."></textarea>
+                            <div class="flex justify-end space-x-2">
+                                <button type="button" class="cancel-reply px-3 py-1.5 text-appleGray rounded">Cancel</button>
+                                <button type="submit" class="btn-primary text-white px-4 py-1.5 rounded">Post Reply</button>
+                            </div>
+                        </form>
+                    `;
+                    messagesContainer.appendChild(messageElement);
+                });
+                
+                // Show/hide load more button
+                if (messages.length > visibleMessages && visibleMessages < maxMessages) {
+                    loadMoreContainer.classList.remove('hidden');
+                } else {
+                    loadMoreContainer.classList.add('hidden');
+                }
+            }
+            
+            // Initial render
+            renderMessages();
+            
+            // Handle new message submission
+            forumForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const messageInput = document.getElementById('message');
+                const messageText = messageInput.value.trim();
+                
+                if (messageText) {
+                    // Add new message to the beginning
+                    messages.unshift({
+                        id: messages.length + 1,
+                        text: messageText,
+                        timestamp: "Just now",
+                        replies: []
+                    });
+                    
+                    // Ensure we don't exceed max messages
+                    if (messages.length > maxMessages) {
+                        messages.pop();
+                    }
+                    
+                    // Reset form
+                    messageInput.value = '';
+                    
+                    // Re-render messages
+                    renderMessages();
+                }
+            });
+            
+            // Handle reply button click
+            messagesContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('reply-btn')) {
+                    const messageId = parseInt(e.target.getAttribute('data-id'));
+                    const replyForm = document.querySelector(`.reply-form[data-id="${messageId}"]`);
+                    
+                    // Hide all other reply forms
+                    document.querySelectorAll('.reply-form').forEach(form => {
+                        form.classList.add('hidden');
+                    });
+                    
+                    // Show this reply form
+                    replyForm.classList.remove('hidden');
+                    replyForm.querySelector('textarea').focus();
+                }
+            });
+            
+            // Handle cancel reply
+            messagesContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('cancel-reply')) {
+                    const form = e.target.closest('.reply-form');
+                    form.classList.add('hidden');
+                    form.querySelector('textarea').value = '';
+                }
+            });
+            
+            // Handle reply submission
+            messagesContainer.addEventListener('submit', function(e) {
+                if (e.target.classList.contains('reply-form')) {
+                    e.preventDefault();
+                    const form = e.target;
+                    const messageId = parseInt(form.getAttribute('data-id'));
+                    const replyText = form.querySelector('textarea').value.trim();
+                    
+                    if (replyText) {
+                        // Find the message
+                        const message = messages.find(m => m.id === messageId);
+                        if (message) {
+                            // Add reply
+                            message.replies.push({
+                                id: message.replies.length + 1,
+                                text: replyText,
+                                timestamp: "Just now"
+                            });
+                            
+                            // Reset form
+                            form.querySelector('textarea').value = '';
+                            form.classList.add('hidden');
+                            
+                            // Re-render messages
+                            renderMessages();
+                        }
+                    }
+                }
+            });
+            
+            // Handle load more messages
+            loadMoreBtn.addEventListener('click', function() {
+                visibleMessages = Math.min(visibleMessages + 5, maxMessages, messages.length);
+                renderMessages();
+            });
+        });
+    </script>
+</body>
+</html>
